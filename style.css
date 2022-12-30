@@ -1,0 +1,138 @@
+/*A CSS pseudo-element is a keyword added to a selector that lets you style a specific part of the selected elements (in this case the clock). For example: 
+::after - inserts something after the content of each selected element(s).
+::before - inserts something before.
+Note: the use of the double-colon, which is consistent with the spec. Sometimes you will see pseudo-elements specified with a single colon, 
+but that was only because we needed to support browsers that didn't understand the double-colon syntax.*/
+*,*::after, *::before {
+    /*The css BOX-SIZING property defines how the width and height of an element are calculated.
+    If you set "box-sizing: border-box" on an element, padding and border are included in the width and height. (All divs are the same size.)*/
+    box-sizing: border-box;
+    /*Css FONT-FAMILY defines the priority for the browser to choose the font from multiple fonts. There are 2 types of font families which you can use:
+        Specific Font-Family – This is a specific type of font like Arial, Verdana, Tahoma
+        Generic Font-Family – This is a General Font and almost all browsers support this generic font family. Example: serif, Sans-serif etc.*/
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+/*Apply the background (fondo della pagina web) we want to our body*/
+body {
+    /*Use a CSS Gradient Generator (example: https://cssgradient.io/) Choose any colour you want. You can use a lineal or radial gradient.
+    Remember always, this lineal/radial gradient starts at the top.*/
+    background: radial-gradient(circle, rgba(34,193,195,1) 31%, rgba(253,187,45,1) 100%);
+    /*To center the clock, after having defined the design of the hands, numbers and circle.*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*to center the vertical axis*/
+    min-height: 100vh;
+}
+
+/*Start to work on the actual clock itself.*/
+.clock {
+    /*We're going to use 300px as our width and height because we need this to be a square.*/
+    width: 300px;
+    height: 300px;
+    /*We're going to use RGBA because we want it to be partially transparent(.8).*/
+    background-color: rgba(255, 255, 255, .8);
+    /*To make the clock a circle*/
+    border-radius: 50%;
+    /*To add a border to the circle*/
+    border: 4px solid rgb(9, 0, 92);
+    position: relative;
+    /*To remove the scroll bar(barra di scorrimento) and prevent the page from being scrollable.*/
+    overflow: hidden;
+}
+
+/*Positioning our numbers in the correct positions on our clock*/
+.clock .number {
+    /*(SECOND STEP)After create the variable, by default we want ROTATION value to be set to zero.*/
+    --rotation: 0;
+    /*If I want to make the numbers relative to the clock, I need to make the clock a position of relative*/
+    position: absolute;
+    /*To rotate the numbers around the clock: */
+    width: 100%;
+    height: 100%;
+    /*To get our numbers positioned at the very top*/
+    text-align: center;
+    /*The TRANSFORM property applies a 2D or 3D transformation to an element. This property allows you to rotate, scale, move, skew, etc., the elements. 
+    (FIRST STEP)To get all the rest of our elements positioned around the clock. We need to have a different value for rotate every one of our numbers,
+    to make that happen we're going to use a variable(VAR). Set this variable to be called ROTATION.*/
+    transform: rotate(var(--rotation));
+    /*To define the size of the numbers*/
+    font-size: 1.5rem;
+}
+
+/*Now, we can select our individual numbers to be 30 degrees apart. Except number 12, is already defaulted.*/
+.clock .number1 { --rotation: 30deg; }
+.clock .number2 { --rotation: 60deg; }
+.clock .number3 { --rotation: 90deg; }
+.clock .number4 { --rotation: 120deg; }
+.clock .number5 { --rotation: 150deg; }
+.clock .number6 { --rotation: 180deg; }
+.clock .number7 { --rotation: 210deg; }
+.clock .number8 { --rotation: 240deg; }
+.clock .number9 { --rotation: 270deg; }
+.clock .number10 { --rotation: 300deg; }
+.clock .number11 { --rotation: 330deg; }
+
+.clock .hand {
+    --rotation: 0;
+    position: absolute;
+    /*To position the bottom of the hands at the centre of the clock*/
+    bottom: 50%;
+    left: 50%;
+    /*width: 10px; 
+    height: 50%;
+    We remove this from here so that we can define the height and width of the individual hands ourselves.*/
+    background-color: black;
+    /*the border of the hand*/
+    border: 1px solid white;
+    /*the top of the hand is curved*/
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    /*To keep(evitare) the bottom of the hand from moving */
+    transform-origin: bottom;
+    /*Z INDEX is a CSS property that defines the order of overlapping(sovrapposizione) HTML elements. Elements with a higher index will be placed on top 
+    of elements with a lower index. Note: Z index only works on positioned elements (position:absolute , position:relative , or position:fixed).
+    To see our hand above(sopra) of the number*/
+    z-index: 10;
+    /*To center the entire hands we use TRANSFORM attribute. To rotate the hands: rotate(var(--rotation)) [But this going to actually set in the Javascript].
+        To make sure ROTATE works, we need to use CALC and multiply by 1degree, so that the --rotation variable works when you set a different number than 0.*/
+    transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+}
+
+/*Create a black circle at the bottom of the hands*/
+.clock::after /*no spaces*/{
+    /*The circle*/
+    content: '';
+    /*The circle's appearance: */
+    position: absolute;
+    background-color: black; /*the colour of the circle*/
+    z-index: 11; /*To appear over the hands*/
+    width: 15px;
+    height: 15px;
+    /*to center the circle*/
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*so it is nice and centered 100% as opposed to be slightly offset*/
+    /*To give it the shape of a circle*/
+    border-radius: 50%;
+}
+
+/*Start to select our individual hands*/
+.clock .hand.second {
+    width: 4px; 
+    height: 45%;
+    background-color: red;
+}
+
+.clock .hand.minute {
+    width: 8px; 
+    height: 40%;
+    background-color: black;
+}
+
+.clock .hand.hour {
+    width: 12px; 
+    height: 35%;
+    background-color: black;
+}

@@ -1,0 +1,67 @@
+<!--Tells the browser to use the most up-to-date version of HTML available.-->
+<!DOCTYPE html>
+<!--All the code inside the HTML element is HTML, this contain everything inside your HTML file, except the DOCTYPE. HTML element always come after the DOCTYPE.
+    LANG attribute is used to determine the language of the text used on any webpage.-->
+<html lang="en">
+<!--The HEAD element is technically optional. The information in the HEAD element is never displayed (visualizzato) in the browser, but is instead used to set information 
+    such as the title or description of the page. This element is generally the fist element inside the HTML element, but it does not have to be.-->
+<head>
+    <!--The META tag defines metadata about an HTML document. Metadata is data (information) about data. META tags always go inside the HEAD element, and are typically 
+        used to specify character set, page description, keywords, author of the document, and viewport settings.
+        Meta CHARSET is what determines how text is transmitted and stored. This text data is usually converted to binary first and then there needs to be 
+        a kind of cipher (cifrario) that connects characters with their correct binary equivalents. The CHARSET attribute specifies the character encoding for the HTML document. 
+        The HTML5 specification encourages web developers to use the UTF-8 character set, which covers almost all of the characters and symbols in the world.-->
+    <meta charset="UTF-8">
+    <!--The VIEWPORT is the area of web page in which the content is visible to the user. The VIEWPORT doesn't have the same size, it varies with the variation 
+        in screen size of the devices on which the website is visible. For a laptop, the viewport has a larger size as compared to a smartphone or tablet.
+        The CONTENT attribute sets the pixel-width of the page to be the same as the pixel-width of the device it is viewed on, aswell as setting the starting zoom-level 
+        to default. This is important because in responsive web-design you often want to display (visualizzare) content based on the device width.-->
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <!--Use the LINK tag in the HEAD section of your HTML page to link a CSS file to an HTML document. Next, specify the name of your external CSS file. For better understanding, 
+        here’s a breakdown of the attributes contained: 
+        HREF – specifies the location of the CSS file you want to link to the HTML. If both HTML and CSS files are in the same folder, enter only the file name. Otherwise, include the folder name in which you store the CSS file.
+        REL – defines the relationship between the linked document and the current one. Use the rel attribute only when the href attribute is present.
+        TYPE – determines the content of the linked file or document between the <style> and </style> tags. It has a text or css as the default value.
+        MEDIA – describes the type of media the CSS styles are optimized for. An example, "screen" as the attribute value to imply its use for computer screens. To apply the CSS rules to printed pages, set the value to "print".
+        Sometimes the attributes TYPE and MEDIA are not necessary.-->
+    <link href="style.css" rel="stylesheet">
+    <!--The SCRIPT html element is used to embed executable code or data; this is typically used to embed or refer to JavaScript code. The SCRIPT element can also be used 
+        with other languages, such as WebGL's GLSL shader programming language and JSON.
+        The DEFER is a boolean attribute, set to indicate to a browser that the script is meant to be executed after the document has been parsed, but before firing DOMContentLoaded.
+        This attribute must not be used if the src attribute is absent, in this case it would have no effect. SCRIPTs with the DEFER attribute will prevent the DOMContentLoaded 
+        event from firing until the script has loaded and finished evaluating.
+        SRC attribute specifies the URI of an external script; this can be used as an alternative to embedding a script directly within a document.-->
+    <script defer src="main.js"></script>
+    <!--The TITLE must be text-only, and it's shown in the browser's title bar or in the page's tab.-->
+    <title>Clock 1st Project</title>
+</head>
+<!--The BODY element contains all the information that we want to display (visualizzare) inside the browser. This can include: text, images, videos and much more.-->  
+<body>
+    <!--The DIV tag defines a division or a section in an HTML document. The DIV tag is used as a container for HTML elements - which is then styled with CSS or manipulated 
+        with JavaScript. The DIV tag is easily styled by using the CLASS or ID attribute. Any sort of content can be put inside the DIV tag.-->
+    <div class="clock">
+        <!--The DATA attribute is added to the hands CLASS to control their rotation in Javascript.-->
+        <div class="hand hour" data-hour-hand></div>
+        <div class="hand minute" data-minute-hand></div>
+        <div class="hand second" data-second-hand></div>
+        <div class="number number1">1</div>
+        <!--EMMET shortcuts help us in writing large HTML code blocks in a few seconds by just writing a few lines of code. 
+            To generate differents DIVs without having to manually type them out, use this Emmet cheatcode: div.number.number$*12{$}*12 
+            For better understanding: div.(the HTML element) number.(the class) number$*12(to increment, put a dollar sign - this going to replace it with a number - 
+            and multiply 12 times - because we want to be 12 different numbers) {$}*12 (inside the curly brackets, the $ is going to go in between the two tags - replaced it 
+            with a number - and going to increment 12 times).
+            Last, hit Enter.-->
+        <div class="number number2">2</div>
+        <div class="number number3">3</div>
+        <div class="number number4">4</div>
+        <div class="number number5">5</div>
+        <div class="number number6">6</div>
+        <div class="number number7">7</div>
+        <div class="number number8">8</div>
+        <div class="number number9">9</div>
+        <div class="number number10">10</div>
+        <div class="number number11">11</div>
+        <div class="number number12">12</div>
+    </div>
+</body>
+</html>
