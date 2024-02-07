@@ -24,6 +24,7 @@ body {
     align-items: center;
     /*to center the vertical axis*/
     min-height: 100vh;
+    margin: 0;
 }
 
 /*Start to work on the actual clock itself.*/
